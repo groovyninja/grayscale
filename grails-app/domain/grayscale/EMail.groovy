@@ -13,4 +13,9 @@ class EMail {
         email   nullable: false, blank: false, email: true
         sender  nullable: false, blank: false, maxSize: 500
     }
+
+    String toString()
+    {
+        "$title $message $email $sender"
+    }
 }
