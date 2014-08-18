@@ -1,3 +1,16 @@
+/*import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
+import com.octo.captcha.component.image.color.SingleColorGenerator
+import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
+import com.octo.captcha.component.image.textpaster.NonLinearTextPaster
+import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage
+import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator
+import com.octo.captcha.engine.GenericCaptchaEngine
+import com.octo.captcha.image.gimpy.GimpyFactory
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService
+
+import java.awt.Color
+import java.awt.Font*/
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -102,7 +115,7 @@ log4j.main = {
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
-
+    // В случае непонятных ошибок заменить error на all, будут протоколироваться все виды сообщений
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -114,4 +127,26 @@ log4j.main = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+}
+
+grails {
+
+    // настройки для отправки сообщений с локального smtp сервера (предпочтительней и безопаснее)
+    /*mail {
+        host = "prestige.localdomain"
+        port = 25
+    }*/
+
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        // раскомментировать и добавить логин google (example@gmail.com)
+        //username = "example@gmail.com"
+        // раскомментировать и указать пароль от google аккаунта
+        //password = "password_example"
+        props = ["mail.smtp.auth": "true",
+                 "mail.smtp.socketFactory.port": "465",
+                 "mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback": "false"]
+    }
 }

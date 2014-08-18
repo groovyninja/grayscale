@@ -1,3 +1,5 @@
+import grayscale.EMail
+
 class UrlMappings {
 
 	static mappings = {
@@ -7,7 +9,8 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        "/"(controller: 'EMail', action: 'main_page') // <-- устанавливаем страницу по умолчанию
+        "/index"(view:"/index") // <-- отображаем прежнюю страницу приветствия на явный псевдоним index
         "500"(view:'/error')
 	}
 }

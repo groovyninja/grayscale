@@ -2,20 +2,22 @@ package grayscale
 
 class EMail {
 
-    String title
-    String message
+    String name
+    String subject
     String email
-    String sender
+    String phone
+    String message
 
     static constraints = {
-        title   nullable: false, blank: false, maxSize: 500
-        message nullable: false, blank: false, maxSize: 10000
-        email   nullable: false, blank: false, email: true
-        sender  nullable: false, blank: false, maxSize: 500
+
+        name blank: false, nullable: false
+        subject blank: false, nullable: false
+        email blank: false, email: true, nullable: false
+        phone blank: true, nullable: true
+        message blank: false, nullable: false, maxSize: 10000
     }
 
-    String toString()
-    {
-        "$title $message $email $sender"
+    String toString() {
+        "$name + <$email>"
     }
 }
