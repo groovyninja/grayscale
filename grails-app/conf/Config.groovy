@@ -1,16 +1,3 @@
-/*import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
-import com.octo.captcha.component.image.color.SingleColorGenerator
-import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
-import com.octo.captcha.component.image.textpaster.NonLinearTextPaster
-import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage
-import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator
-import com.octo.captcha.engine.GenericCaptchaEngine
-import com.octo.captcha.image.gimpy.GimpyFactory
-import com.octo.captcha.service.multitype.GenericManageableCaptchaService
-
-import java.awt.Color
-import java.awt.Font*/
-
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -137,13 +124,25 @@ grails {
         port = 25
     }*/
 
+    /**
+     * Настраиваем сервис, доступный после установки плагина mail-1.0.7,
+     * для оправки email сообщений через smpt сервер google. Для этого нам потребуется
+     * заранее создать аккаунт google и указать логин и пароль от созданного
+     * аккаунта в настройках плагина для отправки сообщений.
+     *
+     * Свойства замыкания, описанного ниже, имеют смысл при установке плагина
+     * Grails Mail посредством добавления в зависимости плагинов проекта строки
+     * compile ":mail:1.0.7"
+     * {@link BuildConfig.groovy:86}
+     */
     mail {
-        host = "smtp.gmail.com"
-        port = 465
+        host = "smtp.gmail.com" // <-- адрес smtp сервера google
+        port = 465              // <-- порт smtp сервера google
         // раскомментировать и добавить логин google (example@gmail.com)
         //username = "example@gmail.com"
         // раскомментировать и указать пароль от google аккаунта
         //password = "password_example"
+        // настройки шифрования при авторизации на smpt сервере google
         props = ["mail.smtp.auth": "true",
                  "mail.smtp.socketFactory.port": "465",
                  "mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
