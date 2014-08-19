@@ -51,6 +51,15 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         //runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 
+        /**
+         * Требуется добавить JDBC драйвер для установленной на стенде
+         * версии PostgreSQL, если в файле DataSource.groovy:38 настроено использование
+         * БД PostgreSQL
+         *
+         * Для H2 дополнительных настроек не требуется, поскольку она подключается
+         * как embedded приложение в фреймворке Grails из коробки. И строку зависимости
+         * JDBC драйвера PostgreSQL при использовании H2 следует закомментировать.
+         */
         // JDBC драйвер для PostgreSQL (настройки смотри в DataSource.groovy:2)
         runtime 'org.postgresql:postgresql:9.3-1102-jdbc4'
 
@@ -71,6 +80,9 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
+        /**
+         * Добавляем дополнительно плагин для отправки email сообщений
+         */
         compile ":mail:1.0.7" // <-- сервис отправки почтовых сообщений из приложения
 
         // Uncomment these to enable additional asset-pipeline capabilities
