@@ -5,6 +5,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+
+    %{--
+    Указываем, какой шаблон будем применять для данной страницы. В данном лучае это
+    grails-app/views/layouts/main.gsp
+    --}%
     <meta name='layout' content='main'/>
     <title>Fruit Inc.</title>
 
@@ -15,8 +20,17 @@
 		<script src="js/respond.src.js"></script>
 	<![endif]-->
 
+    %{--
+    Добавляем скрипт, сгенерированный конструктором карт yandex для добавления карты на сайт.
+    Детали, как создавать свои карты и добвлять на свой сайт, описаны здесь
+
+    http://api.yandex.ru/maps/solutions/?p=about&ncrnd=7759
+    --}%
     <script type="text/javascript" charset="utf-8" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=4raQ7QEWc5HudzPil88AsaKVScwMObfm&id=yandex_map_container"></script>
 
+    %{--
+    Скрипт, настранивающий стили для облака тегов, отображаемого на сранице сайта
+    --}%
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
             var gradient = {
@@ -78,6 +92,17 @@
 </head>
 
 <body>
+
+%{--
+Далее описывем слайды нашего одностраничного сайта, занимающие примерно один экран и расположенные
+каждый в отдельном элементе div. Тут нет чего-либо специфического, достаточно базовых представлений о
+html и css, чтобы понимать описываемое ниже.
+
+Единственную трудность, пожалуй, могут составить только выражения языка gsp для подключения ресурсов
+типа ${assetPath(..)}
+Но и это станет понятным и прстым после прочтения
+http://bertramdev.github.io/asset-pipeline/guide/usage.html#linking
+--}%
 
 <div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
     <div class="effect_2">
@@ -345,6 +370,17 @@
                 <div class="contact_form" id="sendMailDiv">
                     <div id="note"></div>
 
+%{--
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ Пожалуй, единственный не самый тривиальный момент на этой странице.
+ Тут происходит внедрение фрагмета html кода, описанного в специальном файле (шаблоне), начинающегося с подчеркивания
+ grails-app/views/EMail/_sendMail.gsp
+ и расположенного в директории контекста контроллера, указанного в атрибуте contextPath. В нашем случае мы могли бы его опустить.
+
+ Детали, как работает render можно узнать здесь
+ http://grails.org/doc/latest/ref/Tags/render.html
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+--}%
                     <div id="fields">
                         <g:render template="sendMail" contextPath="/EMail" model="['email': email]"/>
                     </div>
