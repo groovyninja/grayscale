@@ -5,7 +5,16 @@
 // You're free to add application-wide JavaScript to this file, but it's generally better 
 // to create separate JavaScript files as needed.
 //
+// Это манифест, на осонве которого будет собран файл application.js, являющийся глобальным файлом,
+// соражщащим все js приложения. (@link http://bertramdev.github.io/asset-pipeline/guide/usage.html#directives)
+//
+// На любой файл JavaScript в этом каталоге можно ссылаться, используя относительный путь, т.е.
+// добавление какого-либо ресурса js будет иметь вид //= require путь/к/файлу/внутри/директории/asserts/javascripts/
+//
+
+// добавляем ресурс jquery не из папки asserts, а по имени плагина jquery, подключенного в BuildConfig.groovy:81
 //= require jquery
+// петерь добавляем обычные фалы js из директории assets/javastripts
 //= require jquery.browser.js
 //= require jquery.easing.1.3.js
 //= require jquery.prettyPhoto.js
@@ -21,7 +30,11 @@
 //= require noty/jquery.noty.js
 //= require noty/default.js
 //= require noty/bottomLeft.js
+
+// можно рекурсивно добавить все ресурсы из папки, указав require_tree /относительный путь, например . (точка), т.е. текущий каталог
 // require_tree .
+
+// собственно добавляем сам файл application.js выражением require_self
 //= require_self
 
 if (typeof jQuery !== 'undefined') {

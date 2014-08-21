@@ -7,6 +7,9 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
+* Все аналогично grails-app/assets/javascripts/application.js
+* Детали описаны по адресу http://bertramdev.github.io/asset-pipeline/guide/usage.html#directives
+*
 * require main
 *= require style.css
 *= require prettyPhoto.css
